@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class PostVideoQuiz extends Component {
+function PostVideoQuiz({questions, answers, handleChange, handleSubmit}) {
 
-  render(){
-    return (
-      <form onSubmit={this.props.handleSubmit} className='quiz'>
-        {this.props.questions.map((q, key) => (
-          <div key={key} className='question'>
-            <label>{this.props.questions[key]}</label>
-            <div className='input'>
-              <textarea 
-                onChange={(e) => this.props.handleChange(e, key)}
-                name={`question${key + 1}`}
-                value={this.props.answers[key]}
-              />
-            </div>
+  return (
+    <form onSubmit={handleSubmit} className='quiz'>
+      {questions.map((q, key) => (
+        <div key={key} className='question'>
+          <label>{questions[key]}</label>
+          <div className='input'>
+            <textarea 
+              onChange={(e) => handleChange(e, key)}
+              name={`question${key + 1}`}
+              value={answers[key]}
+            />
           </div>
-        ))}
-        
-        <button>Submit</button>
-      </form>
-    );
-  }
+        </div>
+      ))}
+      <button>Submit</button>
+    </form>
+  );
 }
 
 export default PostVideoQuiz;

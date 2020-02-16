@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 import PostVideoQuiz from './PostVideoQuiz';
+import PrefixSelector from './PrefixSelector';
 import './App.css';
 
 class App extends Component {
@@ -10,7 +11,8 @@ class App extends Component {
     duration: 0,
     pauseTime: 0,
     timesPaused: [],
-    showQuiz: true,
+    showQuiz: false,
+    showPrefixSelector: true,
     questions: [
       'What is a prefix?',
       'What language do prefixes typically come from?',
@@ -25,8 +27,6 @@ class App extends Component {
     this.setState({ timesPaused: newTimesPaused });
   }
 
-  // STILL NEED TO FIX so it updates every new play
-  // We can change it to handlePlay and only increment when pauseTime < 1
   handlePlay = () => {
     if(this.state.pauseTime < 1){
       let plays = this.state.plays;
@@ -47,14 +47,12 @@ class App extends Component {
   }
 
   handleSubmit = e => {
-    // console.log(e.target);
+    console.log(this.state.answers);
     e.preventDefault();
   }
 
   handleChange = (e, idx) => {
     let newState = {...this.state};
-
-    console.log(idx);
     newState.answers[idx] = e.target.value;
     this.setState(newState)
     e.preventDefault();
@@ -84,7 +82,9 @@ class App extends Component {
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
               />
-            : null
+            : this.state.showPrefixSelector 
+              ? <PrefixSelector />
+              : null
           }
         </div>
       </div>
