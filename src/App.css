@@ -29,3 +29,11 @@
 .quiz {
   margin: 20px;
 }
+
+.input button {
+  margin: 0 0 10px 10px;
+}
+
+.question {
+  margin: 20px 0;
+}

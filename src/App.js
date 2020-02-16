@@ -10,7 +10,13 @@ class App extends Component {
     duration: 0,
     pauseTime: 0,
     timesPaused: [],
-    showQuiz: false
+    showQuiz: true,
+    questions: [
+      'What is a prefix?',
+      'What language do prefixes typically come from?',
+      'List some of your favorite words with prefixes?'
+    ],
+    answers: ['','','']
   }
 
   handlePause = () => {
@@ -40,6 +46,20 @@ class App extends Component {
     this.setState({ duration })
   }
 
+  handleSubmit = e => {
+    // console.log(e.target);
+    e.preventDefault();
+  }
+
+  handleChange = (e, idx) => {
+    let newState = {...this.state};
+
+    console.log(idx);
+    newState.answers[idx] = e.target.value;
+    this.setState(newState)
+    e.preventDefault();
+  }
+
   render() {
     return (
       <div className="App">
@@ -58,7 +78,12 @@ class App extends Component {
           />
           {
             this.state.showQuiz 
-            ? <PostVideoQuiz />
+            ? <PostVideoQuiz 
+                questions={this.state.questions}
+                answers={this.state.answers}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
             : null
           }
         </div>
