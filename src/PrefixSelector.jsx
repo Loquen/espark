@@ -1,9 +1,22 @@
 import React from 'react';
 
-function PrefixSelector(props) {
+function PrefixSelector({prefixWords, handlePrefixClick, handlePrefixSubmit}) {
   return (
-    <div>
-      prefixes
+    <div className='quiz'>
+      <p>Select the words that are prefixes</p>
+      <div>
+        {prefixWords.map((word, key) => (
+          <div 
+            style={{backgroundColor: word.color}}
+            className='selector' 
+            key={key}
+            onClick={(e) => handlePrefixClick(e, key)}
+          >
+            {word.text}
+          </div>
+        ))}
+      </div>
+      <button onClick={handlePrefixSubmit}>Submit</button>
     </div>
   );
 }

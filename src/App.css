@@ -37,3 +37,18 @@
 .question {
   margin: 20px 0;
 }
+
+.selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  background-color: aliceblue;
+  height: 50px;
+  width: 200px;
+}
+
+.pre-quiz {
+  display: flex;
+  flex-direction: column;
+}
