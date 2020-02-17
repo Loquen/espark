@@ -129,7 +129,10 @@ class App extends Component {
     let newState = {...this.state}
     newState.preCheckboxes = checkboxes;
     this.setState(newState);
-    e.preventDefault();
+  }
+
+  handlePreVideoQuiz = e => {
+    console.log(this.state.preCheckboxes.filter(box => box.isChecked));
   }
 
   render() {
@@ -144,6 +147,7 @@ class App extends Component {
             ? <PreVideoQuiz 
                 preCheckboxes={this.state.preCheckboxes}
                 toggleChange={this.togglePreChange}
+                handlePreVideoQuiz={this.handlePreVideoQuiz}
               />
             : null
           }
