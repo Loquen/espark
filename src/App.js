@@ -13,7 +13,7 @@ class App extends Component {
     pauseTime: 0,
     timesPaused: [],
     showQuiz: false,
-    showPrefixSelector: false,
+    showPrefixSelectionQuiz: false,
     showPreVideoQuiz: true,
     preCheckboxes: [
       {
@@ -64,6 +64,7 @@ class App extends Component {
     prefixSelectorAnswers: []
   }
 
+  /********* VIDEO ACTIONS *********/
   handlePause = () => {
     let newTimesPaused = this.state.timesPaused;
     newTimesPaused.push(this.state.pauseTime);
@@ -81,16 +82,18 @@ class App extends Component {
     this.setState({pauseTime: state.playedSeconds})
   }
 
-  // We can change which type of quiz is showing by setting 
+  // We can change which type of quiz is shown by setting 
   // the corresponding show state
   handleEnded = () => {
-    this.setState({showQuiz: true});
+    // this.setState({showQuiz: true});
+    this.setState({showPrefixSelectionQuiz: true })
   }
 
   handleDuration = (duration) => {
     this.setState({ duration })
   }
 
+  /********* POSTVIDEO QUIZ *********/
   handleSubmit = e => {
     console.log(this.state.postVideoAnswers);
     e.preventDefault();
@@ -103,6 +106,7 @@ class App extends Component {
     e.preventDefault();
   }
 
+  /********* PREFIX QUIZ *********/
   handlePrefixClick = (e, idx) => {
     let newState = {...this.state};
     let color = newState.prefixWords[idx].color === 'aliceblue' ? '#7a7afa' : 'aliceblue';
@@ -121,6 +125,7 @@ class App extends Component {
     console.log(this.state.prefixSelectorAnswers);
   }
 
+  /********* PREVIDEO QUIZ *********/
   togglePreChange = (e, idx) => {
     let checkboxes = [...this.state.preCheckboxes];
     let checkbox = {...checkboxes[idx]};
@@ -133,6 +138,7 @@ class App extends Component {
 
   handlePreVideoQuiz = e => {
     console.log(this.state.preCheckboxes.filter(box => box.isChecked));
+    this.setState({showPreVideoQuiz: false})
   }
 
   render() {
@@ -168,7 +174,7 @@ class App extends Component {
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
               />
-            : this.state.showPrefixSelector 
+            : this.state.showPrefixSelectionQuiz 
               ? <PrefixSelector 
                   prefixWords={this.state.prefixWords}
                   handlePrefixClick={this.handlePrefixClick}

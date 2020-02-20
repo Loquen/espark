@@ -6,7 +6,7 @@ function PreVideoQuiz({preCheckboxes, toggleChange, handlePreVideoQuiz}){
       <h3>Do you know what a prefix is already? Select the true statements:</h3>
       <div className='pre-quiz'>
         {preCheckboxes.map((c, key) => (
-          <label>
+          <label key={key}>
             <input type="checkbox"
               checked={c.isChecked}
               onChange={(e) => toggleChange(e, key)}
