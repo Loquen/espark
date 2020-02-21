@@ -145,7 +145,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          eSpark take home challenge
+          eSpark programming challenge
         </header>
         <div className='main'>
           {
